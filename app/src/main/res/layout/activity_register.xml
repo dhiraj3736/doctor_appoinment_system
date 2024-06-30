@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".Activity_register">
+
+    <!-- Header Image -->
+    <ImageView
+        android:id="@+id/header_image"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+android:layout_weight="1"
+        android:src="@drawable/userdashboardimage" />
+
+    <!-- Full Name Input -->
+    <EditText
+        android:id="@+id/full_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="Full Name"
+        android:inputType="textPersonName"
+        android:background="@drawable/edittext_background"
+        android:drawableStart="@drawable/ic_user"
+        android:drawablePadding="15dp"/>
+
+    <!-- Email Address Input -->
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="Email Address"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/edittext_background"
+        android:drawableStart="@drawable/ic_email"
+        android:drawablePadding="15dp"/>
+
+    <!-- Phone Number Input -->
+    <EditText
+        android:id="@+id/phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="Phone Number"
+        android:inputType="phone"
+        android:background="@drawable/edittext_background"
+        android:drawableStart="@drawable/ic_phone"
+        android:drawablePadding="15dp"/>
+
+    <!-- Email Password Input -->
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:background="@drawable/edittext_background"
+        android:drawableStart="@drawable/ic_password"
+        android:drawablePadding="15dp"/>
+
+    <!-- Create Account Button -->
+    <Button
+        android:id="@+id/register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@android:color/holo_purple"
+        android:text="Create Account"
+        android:textColor="@android:color/white" />
+
+    <!-- Log In Text -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Already have an account? "
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="Log In"
+            android:textColor="@android:color/holo_purple"
+            android:textStyle="bold"
+            android:padding="0dp"
+            android:minHeight="0dp"
+            android:minWidth="0dp" />
+    </LinearLayout>
+
+</LinearLayout>

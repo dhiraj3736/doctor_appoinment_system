@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navHome"
+        android:title="Home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/home"/>
+
+    <item
+        android:id="@+id/navNotification"
+        android:title="Notification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/notifications"
+       />
+
+    <item
+        android:id="@+id/navBook"
+        android:title="Book"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/book"/>
+
+    <item
+        android:id="@+id/navProfile"
+        android:title="Profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/profile"
+        />
+
+</menu>

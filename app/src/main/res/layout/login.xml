@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center_horizontal">
+
+    <!-- Welcome text -->
+    <TextView
+        android:id="@+id/tvWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="50dp"/>
+
+    <!-- Khalti text -->
+    <TextView
+        android:id="@+id/tvKhalti"
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
+        android:text="Hamro Hospital"
+        android:textSize="32sp"
+        android:textColor="@android:color/holo_purple"
+        android:textStyle="bold"
+        android:layout_marginTop="8dp"/>
+    <ImageView
+        android:id="@+id/header_image"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+
+        android:src="@drawable/userdashboardimage" />
+
+    <!-- Sign in text -->
+    <TextView
+        android:id="@+id/tvSignIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign in to your Account"
+        android:textSize="16sp"
+        android:textColor="@android:color/darker_gray"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Mobile Number / Email EditText -->
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mobile Number / Email"
+        android:inputType="textEmailAddress"
+        android:padding="10dp"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Password EditText -->
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Forgot Password TextView -->
+    <TextView
+        android:id="@+id/tvForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FORGOT PASSWORD"
+        android:textColor="@android:color/holo_purple"
+        android:textSize="14sp"
+        android:layout_gravity="end"
+        android:layout_marginTop="4dp"/>
+
+    <!-- Login Button -->
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="LOGIN"
+        android:textAllCaps="true"
+        android:backgroundTint="@android:color/holo_purple"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="16dp"/>
+
+    <!-- New User? TextView -->
+    <TextView
+        android:id="@+id/tvNewUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New User?"
+        android:textSize="16sp"
+        android:textColor="@android:color/darker_gray"
+        android:layout_marginTop="32dp"/>
+
+    <!-- Create an Account TextView -->
+
+    <Button
+        android:id="@+id/tvCreateAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:text="CREATE AN ACCOUNT"
+        android:textColor="@android:color/holo_purple"
+        android:textStyle="bold"
+        android:padding="0dp"
+        android:minHeight="0dp"
+        android:minWidth="0dp" />
+
+</LinearLayout>

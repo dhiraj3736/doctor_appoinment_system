@@ -1,0 +1,16 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/purple_200</item>
+        <item name="colorAccent">@color/black</item>
+        <item name="buttonStyle">@style/CustomButton</item>
+    </style>
+
+    <!-- Custom button style to avoid theme color overrides -->
+    <style name="CustomButton" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/border_for_button</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+</resources>
