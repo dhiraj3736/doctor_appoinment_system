@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:background="@color/purple_20">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+
+        android:paddingStart="15dp"
+        android:background="@color/purple_200"
+
+        >
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back_arrow"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="9dp"/>
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Appoinment"
+            android:textColor="@color/black"
+
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginTop="7dp"
+            android:textSize="24sp"
+           />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/DateSelectionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:padding="16dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Date"
+
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <!-- CalendarView for Date selection -->
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="wrap_content"
+        android:layout_height="266dp"
+        android:layout_marginTop="20dp"
+
+        android:paddingStart="2dp"
+        android:layout_gravity="center"
+       android:background="@color/purple_200"
+        />
+
+    </LinearLayout>
+
+    <!-- Time selection area -->
+    <LinearLayout
+        android:id="@+id/timeSelectionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Available time"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <GridLayout
+            android:id="@+id/timeGrid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="4"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:layout_marginTop="8dp">
+            <!-- Time buttons will be dynamically added here -->
+        </GridLayout>
+    </LinearLayout>
+
+    <!-- Book appointment button -->
+    <Button
+        android:id="@+id/bookAppointmentButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Book appointment"
+        android:backgroundTint="#007bff"
+        android:textColor="#FFFFFF" />
+</LinearLayout>

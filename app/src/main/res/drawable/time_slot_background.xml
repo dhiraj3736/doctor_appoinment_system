@@ -1,0 +1,16 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape>
+            <solid android:color="#FFCCCC" /> <!-- Background color when pressed -->
+            <corners android:radius="8dp" /> <!-- Rounded corners -->
+            <stroke android:width="2dp" android:color="#FF6666" /> <!-- Border color when pressed -->
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <solid android:color="#FFFFFF" /> <!-- Default background color -->
+            <corners android:radius="8dp" /> <!-- Rounded corners -->
+            <stroke android:width="2dp" android:color="#CCCCCC" /> <!-- Default border color -->
+        </shape>
+    </item>
+</selector>

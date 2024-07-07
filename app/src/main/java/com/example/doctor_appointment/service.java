@@ -173,8 +173,10 @@ public class service extends AppCompatActivity {
                             String qualification = obj.getString("qualification");
                             String experience = obj.getString("experiance");
                             String image = obj.getString("image");
+                            String rating_value = obj.getString("rating_value");
 
-                            doctor = new doctorList(d_id,name, specialist, qualification, experience, image);
+
+                            doctor = new doctorList(d_id,name, specialist, qualification, experience, image,rating_value);
                             arrayListdoctor.add(doctor);
                         }
                         adaptor.notifyDataSetChanged();

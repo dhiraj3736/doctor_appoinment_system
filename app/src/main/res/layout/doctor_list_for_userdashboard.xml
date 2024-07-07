@@ -17,6 +17,7 @@
         app:cardElevation="8dp"
         app:cardMaxElevation="1dp"
         app:cardUseCompatPadding="true"
+        android:id="@+id/card"
 
         >
 

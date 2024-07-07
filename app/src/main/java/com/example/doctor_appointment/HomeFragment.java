@@ -71,7 +71,9 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        user_id = getArguments().getString("user_id");
+
+
+
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
@@ -188,8 +190,10 @@ public class HomeFragment extends Fragment {
         }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
+                SessionManagement sessionManagement = new SessionManagement(getActivity());
+                int user_id = sessionManagement.getSession();
                 Map<String, String> data = new HashMap<>();
-                data.put("u_id", user_id);
+                data.put("u_id", String.valueOf(user_id));
                 return data;
             }
         };
@@ -275,8 +279,10 @@ public class HomeFragment extends Fragment {
                             String qualification = obj.getString("qualification");
                             String experience = obj.getString("experiance");
                             String image = obj.getString("image");
+                            String rating_value = obj.getString("rating_value");
 
-                            doctor = new doctorList(d_id,name, specialist, qualification, experience, image);
+
+                            doctor = new doctorList(d_id,name, specialist, qualification, experience, image,rating_value);
                             arrayListdoctor.add(doctor);
                         }
                         adapter.notifyDataSetChanged();

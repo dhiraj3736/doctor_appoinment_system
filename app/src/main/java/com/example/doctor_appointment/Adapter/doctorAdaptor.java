@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 
 import com.bumptech.glide.Glide;
+import com.example.doctor_appointment.Appoinment;
 import com.example.doctor_appointment.R;
 import com.example.doctor_appointment.See_all_doctor;
 import com.example.doctor_appointment.doctor_profile;
@@ -50,11 +51,13 @@ public class doctorAdaptor extends ArrayAdapter<doctorList> {
 //        TextView d_experiance=view.findViewById(R.id.doctor_experience);
         MaterialButton book_btn=view.findViewById(R.id.book_btn);
         CardView doctor_profile=view.findViewById(R.id.doctor_card);
+        TextView rating_value=view.findViewById(R.id.rating_value);
 
         Glide.with(context).load(doctorarraylist.get(position).getImage()).circleCrop().into(d_image);
         String d_id=(doctorarraylist.get(position).getD_id());
         d_name.setText(doctorarraylist.get(position).getName());
         d_specialty.setText(doctorarraylist.get(position).getSpecialist());
+        rating_value.setText(doctorarraylist.get(position).getRating_value());
 //        d_qualification.setText(doctorarraylist.get(position).getQualification());
 //        d_experiance.setText(doctorarraylist.get(position).getExperiance());
 
@@ -72,8 +75,8 @@ public class doctorAdaptor extends ArrayAdapter<doctorList> {
 book_btn.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
-        Intent intent=new Intent(context, doctor_profile.class);
-        intent.putExtra("doctor_id",d_id);
+        Intent intent=new Intent(context, Appoinment.class);
+        intent.putExtra("d_id",d_id);
         context.startActivity(intent);
 
     }

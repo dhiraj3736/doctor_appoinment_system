@@ -1,7 +1,9 @@
 package com.example.doctor_appointment.model;
 
+import androidx.annotation.Nullable;
+
 public class doctorList {
-String d_id, name,specialist,qualification,experiance;
+String d_id, name,specialist,qualification,experiance,rating_value;
 String image;
 
     public doctorList(String d_id,String name, String specialist, String qualification, String experiance, String image) {
@@ -11,6 +13,17 @@ String image;
         this.qualification = qualification;
         this.experiance = experiance;
         this.image = image;
+
+    }
+    public doctorList(String d_id,String name, String specialist, String qualification, String experiance, String image,String rating_value) {
+        this.d_id=d_id;
+        this.name = name;
+        this.specialist = specialist;
+        this.qualification = qualification;
+        this.experiance = experiance;
+        this.image = image;
+        this.rating_value=rating_value;
+
     }
 
     public String getD_id() {
@@ -59,5 +72,13 @@ String image;
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getRating_value() {
+        return rating_value;
+    }
+
+    public void setRating_value(String rating_value) {
+        this.rating_value = rating_value;
     }
 }

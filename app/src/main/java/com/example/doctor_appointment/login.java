@@ -32,8 +32,9 @@ public class login extends Activity {
     EditText lemail,lpassword;
     Button login_button,register;
     String email,password;
+    int session_Id;
 
-
+    String user_info;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +72,21 @@ public class login extends Activity {
         });
 
     }
+
+    protected void onStart(){
+        super.onStart();
+        SessionManagement sessionManagement=new SessionManagement(login.this);
+        int userID=sessionManagement.getSession();
+
+        if(userID !=-1){
+            Intent intent = new Intent(login.this, user_dashboard.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+            intent.putExtra("session_Id", session_Id);
+            intent.putExtra("user_info",user_info);
+            startActivity(intent);
+        }
+    }
     private void loginUser(String email, String password) {
         String url =Endpoints.login;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -82,10 +98,18 @@ public class login extends Activity {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             if (jsonObject.getString("result").equals("success")) {
-                                String session_Id = jsonObject.getString("session_id");
-                                String user_info=jsonObject.getString("user");
+                                session_Id = jsonObject.getInt("session_id");
+                                user_info=jsonObject.getString("user");
+
+
+                                User user=new User(session_Id,user_info);
+
+                                SessionManagement sessionManagement=new SessionManagement(login.this);
+                                sessionManagement.saveSession(user);
 
                                 Intent intent = new Intent(login.this, user_dashboard.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
                                 intent.putExtra("session_Id", session_Id);
                                 intent.putExtra("user_info",user_info);
                                 startActivity(intent);

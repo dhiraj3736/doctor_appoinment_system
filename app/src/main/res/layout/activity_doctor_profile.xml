@@ -10,7 +10,7 @@
     android:padding="16dp"
     tools:context=".doctor_profile">
 
-    <!-- Back Button -->
+
     <ImageView
         android:id="@+id/back_button"
         android:layout_width="32dp"
@@ -94,6 +94,7 @@
                         android:contentDescription="@string/experience" />
 
                     <TextView
+                        android:id="@+id/experience"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="20 years"
@@ -124,6 +125,7 @@
                         android:contentDescription="@string/rating" />
 
                     <TextView
+                        android:id="@+id/rating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="4.7"
@@ -143,45 +145,95 @@
     </androidx.cardview.widget.CardView>
 
     <!-- Available Time -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:gravity="start"
+        android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+android:layout_marginStart="20dp"
+        android:gravity="center"
+        android:orientation="vertical">
     <TextView
         android:id="@+id/available_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="6dp"
         android:text="Available Time"
         android:textColor="#000"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:gravity="start"
+            android:orientation="horizontal">
     <TextView
-        android:id="@+id/available_time_text"
+        android:id="@+id/start_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="8dp"
-        android:text="09.00 AM - 14.00 PM"
+        android:layout_marginTop="0dp"
+        android:text="09.00 AM "
         android:textColor="#6B7280"
         android:textSize="14sp" />
+            <TextView
 
-    <!-- Doctor Details -->
-    <TextView
-        android:id="@+id/doctor_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="0dp"
+                android:text="To"
+                android:textColor="#6B7280"
+                android:textSize="14sp" />
+        <TextView
+            android:id="@+id/end_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="0dp"
+            android:text=" 14.00 PM"
+            android:textColor="#6B7280"
+            android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/book"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="24dp"
-        android:text="Doctor Details"
-        android:textColor="#000"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        android:layout_gravity="end"
+        android:layout_marginStart="100dp"
+        android:text="book now"/>
+    </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_marginTop="10dp"
+        android:background="@color/purple_200"
+
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="8dp"
-        android:text="Dr. Lana Smith is one of the best Cardiologists, having over 20 years of experience in the medical field."
-        android:textColor="#6B7280"
-        android:textSize="14sp" />
+        app:tabIndicatorColor="@color/light_black"
+        app:tabSelectedTextColor="@color/light_purple"
+        app:tabTextColor="@android:color/black"/>
+
+    <!-- ViewPager2 -->
+
+
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/purple_20"/>
+
 </LinearLayout>
