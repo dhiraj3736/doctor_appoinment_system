@@ -64,6 +64,7 @@ public class doctor_Adapter_for_userdashboard extends ArrayAdapter<doctorList> {
                 intent.putExtra("doctor_id",d_id);
                 context.startActivity(intent);
 
+
             }
         });
 

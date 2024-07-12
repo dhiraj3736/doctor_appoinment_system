@@ -24,12 +24,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
-public class Appoinment extends AppCompatActivity {
+public class EditBooking extends AppCompatActivity {
 
     private CalendarView calendarView;
     private GridLayout timeGrid;
@@ -38,26 +42,43 @@ public class Appoinment extends AppCompatActivity {
     private String selectedDate = "";
     private String selectedTimeSlot = "";
     private TextView selectedTextView = null;
-    EditText reason;
-    String Reasons;
+    private EditText reason;
+    private String Reasons;
+    private String booking_time;
+    String b_id;
     private List<String> bookedSlots = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_appoinment);
+        setContentView(R.layout.activity_edit_booking);
 
         calendarView = findViewById(R.id.calendarView);
         timeGrid = findViewById(R.id.timeGrid);
         book = findViewById(R.id.book);
-        reason=findViewById(R.id.reason);
-
+        reason = findViewById(R.id.reason);
 
         requestQueue = Volley.newRequestQueue(this);
 
         Intent intent = getIntent();
         String doctorID = intent.getStringExtra("d_id");
+       b_id = intent.getStringExtra("b_id");
+        String booking_date = intent.getStringExtra("b_date");
+        booking_time = intent.getStringExtra("b_time");
+        String b_reason = intent.getStringExtra("reason");
+        Log.d("d_id", doctorID);
+        Log.d("b_id", b_id);
+        Log.d("b_date", booking_date);
+        Log.d("booking_time", booking_time);
+        Log.d("reason", b_reason);
+
+        reason.setText(b_reason);
+
+        setCalendarDate(calendarView, booking_date);
+        selectedDate = booking_date;
+
         getTimeSlot(doctorID, selectedDate);
+
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
@@ -69,27 +90,34 @@ public class Appoinment extends AppCompatActivity {
             }
         });
 
-       book.setOnClickListener(new View.OnClickListener() {
-
+        book.setOnClickListener(new View.OnClickListener() {
             @Override
-
-
             public void onClick(View v) {
-             Reasons=reason.getText().toString().trim();
-                if (!selectedTimeSlot.isEmpty()) {
-                    saveAppoinment(doctorID, selectedDate, selectedTimeSlot,Reasons);
-                } else {
-                    Toast.makeText(Appoinment.this, "Please select a time slot", Toast.LENGTH_SHORT).show();
-                }
+                Reasons = reason.getText().toString().trim();
+
+                    saveAppoinment(doctorID, selectedDate, selectedTimeSlot, Reasons);
+
             }
         });
-
     }
 
-    public void saveAppoinment(String doctorId, String selectedDate, String selectedTimeSlot,String Reasons) {
-        String url = Endpoints.saveAppoinment;
+    private void setCalendarDate(CalendarView calendarView, String bookingDate) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
 
-        SessionManagement sessionManagement = new SessionManagement(Appoinment.this);
+        try {
+            Date date = dateFormat.parse(bookingDate);
+            if (date != null) {
+                calendarView.setDate(date.getTime(), true, true);
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void saveAppoinment(String doctorId, String selectedDate, String selectedTimeSlot, String Reasons) {
+        String url = Endpoints.EditAppoinment;
+
+        SessionManagement sessionManagement = new SessionManagement(EditBooking.this);
         int user_id = sessionManagement.getSession();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -102,9 +130,8 @@ public class Appoinment extends AppCompatActivity {
                             if (result.equals("success")) {
                                 String message = object.getString("message");
 
-                               reason.setText("");
-                                Toast.makeText(Appoinment.this, message, Toast.LENGTH_SHORT).show();
-                                // Refresh time slots
+                                reason.setText("");
+                                Toast.makeText(EditBooking.this, message, Toast.LENGTH_SHORT).show();
                                 getTimeSlot(doctorId, selectedDate);
 
                             } else {
@@ -124,11 +151,12 @@ public class Appoinment extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> data = new HashMap<>();
-                data.put("d_id", doctorId);
+
                 data.put("date", selectedDate);
                 data.put("time", selectedTimeSlot);
                 data.put("reason", Reasons);
-                data.put("user_id", String.valueOf(user_id));
+
+                data.put("b_id",b_id);
                 return data;
             }
         };
@@ -157,7 +185,6 @@ public class Appoinment extends AppCompatActivity {
                                 }
                                 for (int i = 0; i < bookedSlotsArray.length(); i++) {
                                     String bookedSlot = bookedSlotsArray.getString(i);
-                                    // Normalize the time format to match HH:mm
                                     bookedSlots.add(bookedSlot.substring(0, 5));
                                 }
 
@@ -191,32 +218,33 @@ public class Appoinment extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
-
-
     private void displayTimeSlots(List<String> timeSlots) {
-        timeGrid.removeAllViews(); // Clear any previous time slots
-
-
+        timeGrid.removeAllViews();
 
         for (String timeSlot : timeSlots) {
             TextView textView = new TextView(this);
             textView.setText(timeSlot);
             textView.setPadding(25, 25, 25, 25);
 
-
             int defaultTextColor = textView.getCurrentTextColor();
             if (bookedSlots.contains(timeSlot)) {
                 textView.setBackgroundResource(R.drawable.select_book);
-                textView.setTextColor(getResources().getColor(R.color.purple_200));                textView.setEnabled(false); // Disable booked slots
+                textView.setTextColor(getResources().getColor(R.color.purple_200));
+                textView.setEnabled(false);
                 Log.d("TimeSlot", "Booked slot: " + timeSlot);
             } else {
-                textView.setBackgroundResource(R.drawable.time_slot_background); // Add background resource for styling
+                textView.setBackgroundResource(R.drawable.time_slot_background);
                 textView.setEnabled(true);
+                if (timeSlot.equals(booking_time)) {
+                    selectedTimeSlot = timeSlot;
+                    selectedTextView = textView;
+                    textView.setBackgroundResource(R.drawable.time_slot_selected_background);
+                }
             }
 
             GridLayout.LayoutParams params = new GridLayout.LayoutParams();
-            int marginInDp = 8; // Margin size in dp
-            int marginInPx = (int) (marginInDp * getResources().getDisplayMetrics().density); // Convert dp to pixels
+            int marginInDp = 8;
+            int marginInPx = (int) (marginInDp * getResources().getDisplayMetrics().density);
             params.setMargins(marginInPx, marginInPx, marginInPx, marginInPx);
             textView.setLayoutParams(params);
 
@@ -224,18 +252,16 @@ public class Appoinment extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if (selectedTextView != null) {
-                        selectedTextView.setBackgroundResource(R.drawable.time_slot_background); // Reset previous selection
+                        selectedTextView.setBackgroundResource(R.drawable.time_slot_background);
                     }
                     selectedTimeSlot = timeSlot;
                     selectedTextView = textView;
-                    textView.setBackgroundResource(R.drawable.time_slot_selected_background); // Highlight current selection
-                    Toast.makeText(Appoinment.this, "Selected: " + timeSlot, Toast.LENGTH_SHORT).show();
-
+                    textView.setBackgroundResource(R.drawable.time_slot_selected_background);
+                    Toast.makeText(EditBooking.this, "Selected: " + timeSlot, Toast.LENGTH_SHORT).show();
                 }
             });
 
             timeGrid.addView(textView);
         }
     }
-
 }

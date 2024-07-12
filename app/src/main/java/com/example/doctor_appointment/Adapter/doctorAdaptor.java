@@ -69,6 +69,7 @@ public class doctorAdaptor extends ArrayAdapter<doctorList> {
                 intent.putExtra("doctor_id",d_id);
                 context.startActivity(intent);
 
+
             }
         });
 
@@ -78,6 +79,7 @@ book_btn.setOnClickListener(new View.OnClickListener() {
         Intent intent=new Intent(context, Appoinment.class);
         intent.putExtra("d_id",d_id);
         context.startActivity(intent);
+
 
     }
 });

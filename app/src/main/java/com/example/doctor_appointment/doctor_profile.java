@@ -72,6 +72,7 @@ public class doctor_profile extends AppCompatActivity {
                 intent1.putExtra("d_id",doctor_id);
                 startActivity(intent1);
 
+
             }
         });
 
@@ -93,6 +94,7 @@ public class doctor_profile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+
             }
         });
     }

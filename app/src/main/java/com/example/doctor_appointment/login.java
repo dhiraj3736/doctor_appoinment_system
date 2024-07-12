@@ -50,6 +50,7 @@ public class login extends Activity {
                 Intent intent = new Intent(login.this, Activity_register.class);
 
                 startActivity(intent);
+
             }
         });
         login_button.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +69,7 @@ public class login extends Activity {
                 if (!email.equals("")&& !password.equals("")){
                     loginUser(email,password);
                 }
+
             }
         });
 

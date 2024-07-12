@@ -57,6 +57,7 @@ public class See_all_doctor extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+
             }
         });
 

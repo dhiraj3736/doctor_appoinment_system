@@ -101,6 +101,7 @@ public class HomeFragment extends Fragment {
                 Intent intent = new Intent(getContext(), See_all_doctor.class);
                 startActivity(intent);
 
+
             }
         });
 
@@ -238,6 +239,7 @@ public class HomeFragment extends Fragment {
                                 intent.putExtra("service_id", s_id);
                                 intent.putExtra("service_name", serviceName);
                                 startActivity(intent);
+
 
 
                             }

@@ -101,6 +101,7 @@ public class fragment_reviews extends Fragment {
             @Override
             public void onClick(View view) {
                 insert_comment();
+
             }
         });
 

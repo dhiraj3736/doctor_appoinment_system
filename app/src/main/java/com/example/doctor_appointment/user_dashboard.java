@@ -57,7 +57,7 @@ String user_info,user_id;
                         selectedFragment = new NotificationFragment();
                         break;
                     case R.id.navBook:
-                        selectedFragment = new BookFragment();
+                        selectedFragment = new ScheduleFragment();
                         break;
                     case R.id.navProfile:
                         selectedFragment = new ProfileFragment();

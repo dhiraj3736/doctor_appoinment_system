@@ -47,6 +47,7 @@ public class Activity_register extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(Activity_register.this,login.class);
                 startActivity(intent);
+              
             }
         });
 register.setOnClickListener(new View.OnClickListener() {
@@ -60,30 +61,30 @@ register.setOnClickListener(new View.OnClickListener() {
         if (mname.isEmpty()){
             Toast.makeText(Activity_register.this, "please enter fullname", Toast.LENGTH_SHORT).show();
 
-            return;
+
         } else if (memail.isEmpty()){
             Toast.makeText(Activity_register.this, "please enter email", Toast.LENGTH_SHORT).show();
 
-            return;
+
         }
         else if (mnumber.isEmpty()){
             Toast.makeText(Activity_register.this, "please enter number", Toast.LENGTH_SHORT).show();
 
-            return;
+
         }
         else if  (mpassword.isEmpty()){
             Toast.makeText(Activity_register.this, "please enter password", Toast.LENGTH_SHORT).show();
 
-            return;
+
         }
         else if (!mnumber.matches("^(97|98)\\d{8}$")) {
             Toast.makeText(Activity_register.this, "Please enter a valid mobile number", Toast.LENGTH_SHORT).show();
 
-            return;
+
         }
         else if (!memail.matches("^[_A-Za-z0-9-]+(.[_A-Za-z0-9-]+)@[a-z]+(.[a-z]+)(.[a-z]{2,})$")) {
             Toast.makeText(Activity_register.this, "Please enter a valid email", Toast.LENGTH_SHORT).show();
-            return;
+
         }
 
 
@@ -131,6 +132,7 @@ register.setOnClickListener(new View.OnClickListener() {
             }
         };
         requestQueue.add(stringRequest);
+
     }
 
 });

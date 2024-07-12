@@ -84,6 +84,7 @@ public class service extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+
             }
         });
         retrive_service_info();
@@ -116,6 +117,7 @@ public class service extends AppCompatActivity {
                                 public void onClick(View v) {
                                     service_description.setText(discription); // Show full description
                                     see_more_button.setVisibility(View.GONE); // Hide "See More" button after expanding
+
                                 }
                             });
                         } else {
