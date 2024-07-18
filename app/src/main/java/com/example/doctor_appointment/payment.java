@@ -25,15 +25,17 @@ import java.util.Map;
 
 public class payment extends AppCompatActivity {
     private RequestQueue requestQueue;
-    private int doctorID;
+    private String doctorID;
     private String selectedDate;
     private String selectedTimeSlot;
     private String Reason;
+    private  String b_id;
+    private  String status;
 TextView date,time,reasons;
 
 TextView cash,online;
     ImageView doctor_image;
-    TextView doctor_name,doctor_specialty,nmc_no;
+    TextView doctor_name,doctor_specialty,nmc_no,stat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +44,12 @@ TextView cash,online;
         requestQueue = Volley.newRequestQueue(this);
 
         // Retrieve data from the Intent
-        doctorID = getIntent().getIntExtra("doctorID", -1);
+        doctorID = getIntent().getStringExtra("doctorID");
         selectedDate = getIntent().getStringExtra("selectedDate");
         selectedTimeSlot = getIntent().getStringExtra("selectedTimeSlot");
         Reason=getIntent().getStringExtra("reason");
+        b_id=getIntent().getStringExtra("b_id");
+        status=getIntent().getStringExtra("status");
         Log.d("reason",Reason);
 
         doctor_image=findViewById(R.id.doctor_image);
@@ -55,22 +59,18 @@ TextView cash,online;
         date=findViewById(R.id.appointment_date);
         time=findViewById(R.id.appointment_time);
         reasons=findViewById(R.id.appointment_reason);
-        online=findViewById(R.id.online);
+        stat=findViewById(R.id.status);
+
 
         date.setText(selectedDate);
         time.setText("||"+selectedTimeSlot);
         reasons.setText(Reason);
-
+        stat.setText(status);
 
 
 getdoctorinfo(String.valueOf(doctorID));
 
-online.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
 
-    }
-});
 
 
 

@@ -118,10 +118,11 @@ public class ScheduleFragment extends Fragment {
                                     String time= obj.getString("time");
                                     String image=obj.getString("image");
                                     String reason= obj.getString("reason");
+                                    String status=obj.getString("status");
                                     int b_id=obj.getInt("b_id");
                                     int d_id=obj.getInt("d_id");
                                     Log.d("img",image);
-                                    booking=new bookingList(d_id,b_id,name,specialist,date,time,image,reason);
+                                    booking=new bookingList(d_id,b_id,name,specialist,date,time,image,reason,status);
                                     bookingarraylist.add(booking);
                                 }
                                 adapter.notifyDataSetChanged();
@@ -182,10 +183,11 @@ public class ScheduleFragment extends Fragment {
                                     String time= obj.getString("time");
                                     String image=obj.getString("image");
                                     String reason=obj.getString("reason");
+                                    String status=obj.getString("status");
                                     int b_id=obj.getInt("b_id");
                                     int d_id=obj.getInt("d_id");
 
-                                    booking=new bookingList(d_id,b_id,name,specialist,date,time,image,reason);
+                                    booking=new bookingList(d_id,b_id,name,specialist,date,time,image,reason,status);
                                     bookingarraylist.add(booking);
                                 }
                                 adapter.notifyDataSetChanged();

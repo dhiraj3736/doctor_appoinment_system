@@ -12,11 +12,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 
 import com.bumptech.glide.Glide;
 import com.example.doctor_appointment.EditBooking;
 import com.example.doctor_appointment.R;
 import com.example.doctor_appointment.model.bookingList;
+import com.example.doctor_appointment.payment;
 
 import java.util.List;
 
@@ -24,6 +26,8 @@ public class scheduleAdapter extends ArrayAdapter<bookingList> {
 
     private Context context;
     private List<bookingList> bookingarraylist;
+
+
     private boolean showButtons;
 
     public scheduleAdapter(@NonNull Context context, List<bookingList> bookingarraylist, boolean showButtons) {
@@ -50,6 +54,8 @@ public class scheduleAdapter extends ArrayAdapter<bookingList> {
             holder.time = view.findViewById(R.id.tvAppointmentTime);
             holder.btnCancel = view.findViewById(R.id.btnCancel);
             holder.btnedit = view.findViewById(R.id.btnedit);
+            holder.booking_card=view.findViewById(R.id.booking_card);
+            holder.status=view.findViewById(R.id.status);
             view.setTag(holder);
 
         } else {
@@ -65,15 +71,38 @@ public class scheduleAdapter extends ArrayAdapter<bookingList> {
         String reason=booking.getReason();
       String b_id= String.valueOf(booking.getB_id());
         String d_id= String.valueOf(booking.getD_id());
+//        holder.status.setText(booking.getStatus());
 
-        // Set visibility of Cancel and Reschedule buttons based on showButtons flag
+        String Sta = booking.getStatus();
+
+// Set status text and initial visibility of btnedit
+        if ("1".equals(Sta) || "2".equals(Sta)) {
+            holder.status.setText("accepted");
+            holder.btnedit.setVisibility(View.GONE);
+        } else if ("0".equals(Sta)) {
+            holder.status.setText("Not accepted");
+            holder.btnedit.setVisibility(View.VISIBLE);  // Ensure visibility is set if needed
+        } else {
+            holder.status.setText("");
+            holder.btnedit.setVisibility(View.VISIBLE);  // Ensure visibility is set if needed
+        }
+
+// Set visibility of Cancel and Reschedule buttons based on showButtons flag
         if (showButtons) {
             holder.btnCancel.setVisibility(View.VISIBLE);
-            holder.btnedit.setVisibility(View.VISIBLE);
+
+            // Ensure btnedit is visible only if not accepted
+            if ("1".equals(Sta) || "2".equals(Sta)) {
+                holder.btnedit.setVisibility(View.GONE);
+            } else {
+                holder.btnedit.setVisibility(View.VISIBLE);
+            }
         } else {
             holder.btnCancel.setVisibility(View.GONE);
-            holder.btnedit.setVisibility(View.GONE);
+            holder.btnedit.setVisibility(View.GONE);  // Ensure it's hidden if showButtons is false
         }
+
+
 
 
         holder.btnedit.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +118,23 @@ public class scheduleAdapter extends ArrayAdapter<bookingList> {
                 context.startActivity(intent);
             }
         });
+
+
+
+        holder.booking_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(getContext(), payment.class);
+
+                intent.putExtra("selectedDate", holder.date.getText().toString());
+                intent.putExtra("selectedTimeSlot", holder.time.getText().toString());
+                intent.putExtra("reason",reason);
+                intent.putExtra("b_id",b_id);
+                intent.putExtra("doctorID",d_id);
+                intent.putExtra("status",Sta);
+                context.startActivity(intent);
+            }
+        });
         return view;
 
 
@@ -97,8 +143,10 @@ public class scheduleAdapter extends ArrayAdapter<bookingList> {
 
     static class ViewHolder {
         ImageView d_photo;
-        TextView d_name, d_speci, date, time;
+        TextView d_name, d_speci, date, time,status;
         Button btnCancel, btnedit;
+
+        CardView booking_card;
     }
     public void setShowButtons(boolean showButtons) {
         this.showButtons = showButtons;

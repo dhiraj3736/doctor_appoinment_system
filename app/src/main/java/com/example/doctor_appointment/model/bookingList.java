@@ -11,8 +11,10 @@ public class bookingList {
     private  int b_id;
     private  int d_id;
 
+    private String status;
 
-    public bookingList(int d_id,int b_id,String doctorName, String specialization, String date, String time,String image,String reason) {
+
+    public bookingList(int d_id,int b_id,String doctorName, String specialization, String date, String time,String image,String reason,String status) {
        this.d_id=d_id;
         this.b_id=b_id;
         this.doctorName = doctorName;
@@ -21,6 +23,15 @@ public class bookingList {
         this.time = time;
         this.image=image;
         this.reason=reason;
+        this.status=status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public int getD_id() {

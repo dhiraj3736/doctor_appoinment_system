@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
 
-    tools:context=".MainActivity"
+    tools:context=".payment"
     android:background="@color/purple_20"
     >
 
@@ -175,6 +175,27 @@ android:layout_marginStart="16dp"
 android:layout_marginEnd="16dp"
         android:layout_marginTop="6dp" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:text="Status"
+        android:textColor="@color/black"
+
+        android:textStyle="bold"
+        android:layout_marginStart="16dp"
+
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/teal_200"
+        android:text="not accepted"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="6dp" />
     <!-- Payment Details -->
     <TextView
         android:layout_width="match_parent"
@@ -188,101 +209,120 @@ android:layout_marginEnd="16dp"
 
         android:textSize="20sp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginStart="16dp"
-android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp">
-
-        <TextView
-            android:id="@+id/consultation_fee"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Consultation"
-            />
-
-        <TextView
-            android:id="@+id/consultation_amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="$60"
-            android:textColor="@android:color/darker_gray" />
-    </LinearLayout>
-
-
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginStart="16dp"
-android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp">
-
-        <TextView
-            android:id="@+id/total_label"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Total"
-            android:textColor="@color/black"
-
-            android:textStyle="bold"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/total_amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="$61.00"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:textColor="@android:color/holo_green_dark" />
-    </LinearLayout>
-
-    <!-- Payment Method -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-
-        android:gravity="center_vertical">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Payment Method"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-
-            android:textSize="16sp" />
-
-
-    </LinearLayout>
-
     <TextView
-        android:id="@+id/cash"
+        android:id="@+id/payment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cash payment"
+        android:textColor="@color/red"
+        android:text="panding"
         android:layout_marginStart="16dp"
-
-        android:layout_marginTop="4dp" />
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="6dp" />
     <TextView
-        android:id="@+id/online"
-        android:layout_width="match_parent"
+        android:id="@+id/note"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="online payment"
+        android:textColor="@color/teal_200"
+        android:text="Note:If a doctor or an admin accepts your appointment, then you can pay."
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="6dp" />
 
-        android:layout_marginTop="4dp" />
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--android:layout_marginEnd="16dp"-->
+<!--        android:layout_marginTop="8dp">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/consultation_fee"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="Consultation"-->
+<!--            />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/consultation_amount"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="$60"-->
+<!--            android:textColor="@android:color/darker_gray" />-->
+<!--    </LinearLayout>-->
+
+
+
+
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--android:layout_marginEnd="16dp"-->
+<!--        android:layout_marginTop="16dp">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/total_label"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="Total"-->
+<!--            android:textColor="@color/black"-->
+
+<!--            android:textStyle="bold"-->
+<!--            android:textSize="16sp" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/total_amount"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="$61.00"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textSize="16sp"-->
+<!--            android:textColor="@android:color/holo_green_dark" />-->
+<!--    </LinearLayout>-->
+
+<!--    &lt;!&ndash; Payment Method &ndash;&gt;-->
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:layout_marginStart="16dp"-->
+
+<!--        android:gravity="center_vertical">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="Payment Method"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textColor="@color/black"-->
+
+<!--            android:textSize="16sp" />-->
+
+
+<!--    </LinearLayout>-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/cash"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Cash payment"-->
+<!--        android:layout_marginStart="16dp"-->
+
+<!--        android:layout_marginTop="4dp" />-->
+<!--    <TextView-->
+<!--        android:id="@+id/online"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="online payment"-->
+<!--        android:layout_marginStart="16dp"-->
+
+<!--        android:layout_marginTop="4dp" />-->
 
 </LinearLayout>
