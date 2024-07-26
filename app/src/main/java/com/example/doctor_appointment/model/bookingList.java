@@ -12,9 +12,10 @@ public class bookingList {
     private  int d_id;
 
     private String status;
+    String fee;
 
 
-    public bookingList(int d_id,int b_id,String doctorName, String specialization, String date, String time,String image,String reason,String status) {
+    public bookingList(int d_id, int b_id, String doctorName, String specialization, String date, String time, String image, String reason, String status, String fee) {
        this.d_id=d_id;
         this.b_id=b_id;
         this.doctorName = doctorName;
@@ -24,6 +25,15 @@ public class bookingList {
         this.image=image;
         this.reason=reason;
         this.status=status;
+        this.fee=fee;
+    }
+
+    public String getFee() {
+        return fee;
+    }
+
+    public void setFee(String fee) {
+        this.fee = fee;
     }
 
     public String getStatus() {

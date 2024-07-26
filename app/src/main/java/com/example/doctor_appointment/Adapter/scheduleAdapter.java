@@ -2,6 +2,7 @@ package com.example.doctor_appointment.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +17,17 @@ import androidx.cardview.widget.CardView;
 
 import com.bumptech.glide.Glide;
 import com.example.doctor_appointment.EditBooking;
+
+
+import com.example.doctor_appointment.EsewaPayment;
 import com.example.doctor_appointment.R;
+
+
+//import com.example.doctor_appointment.esewapayment;
 import com.example.doctor_appointment.model.bookingList;
 import com.example.doctor_appointment.payment;
+
+
 
 import java.util.List;
 
@@ -74,6 +83,7 @@ public class scheduleAdapter extends ArrayAdapter<bookingList> {
 //        holder.status.setText(booking.getStatus());
 
         String Sta = booking.getStatus();
+        String fee= booking.getFee();
 
 // Set status text and initial visibility of btnedit
         if ("1".equals(Sta) || "2".equals(Sta)) {
@@ -124,21 +134,46 @@ public class scheduleAdapter extends ArrayAdapter<bookingList> {
         holder.booking_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(getContext(), payment.class);
-
+                // Log the value of 'b_id' before starting the activity
+                Log.d("ScheduleAdapter", "b_id value before starting KhaltiPayment: " + b_id);
+Log.d("fee",fee);
+                // Intent for the first activity
+                Intent intent = new Intent(getContext(), EsewaPayment.class);
                 intent.putExtra("selectedDate", holder.date.getText().toString());
                 intent.putExtra("selectedTimeSlot", holder.time.getText().toString());
-                intent.putExtra("reason",reason);
-                intent.putExtra("b_id",b_id);
-                intent.putExtra("doctorID",d_id);
-                intent.putExtra("status",Sta);
+                intent.putExtra("reason", reason);
+                intent.putExtra("b_id", b_id);
+                intent.putExtra("doctorID", d_id);
+                intent.putExtra("status", Sta);
+                intent.putExtra("fee",fee);
                 context.startActivity(intent);
+//
+//                 Intent for the second activity
+//                Intent intent1 = new Intent(getContext(), EsewaPayment.class);
+//                intent1.putExtra("selectedDate", holder.date.getText().toString());
+//                intent1.putExtra("selectedTimeSlot", holder.time.getText().toString());
+//                intent1.putExtra("reason", reason);
+//                intent1.putExtra("b_id", b_id); // Verify 'b_id' here
+//                intent1.putExtra("doctorID", d_id);
+//                intent1.putExtra("status", Sta);
+//                intent.putExtra("fee",fee);
+//                context.startActivity(intent1);
+
+
             }
         });
+
+
+
         return view;
 
 
+
+
+
     }
+
+
 
 
     static class ViewHolder {

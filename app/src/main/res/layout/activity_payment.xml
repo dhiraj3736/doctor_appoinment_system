@@ -209,15 +209,37 @@ android:layout_marginEnd="16dp"
 
         android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/payment"
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/red"
-        android:text="panding"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="6dp" />
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="16dp"
+        >
+
+        <TextView
+            android:id="@+id/paymentdetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="pending"
+            android:layout_marginEnd="16dp"
+            android:layout_gravity="center"
+            />
+
+
+
+        <Button
+            android:id="@+id/esewabtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="esewa"
+            />
+
+
+    </LinearLayout>
+
     <TextView
         android:id="@+id/note"
         android:layout_width="300dp"

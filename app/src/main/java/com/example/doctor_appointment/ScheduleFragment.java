@@ -121,8 +121,9 @@ public class ScheduleFragment extends Fragment {
                                     String status=obj.getString("status");
                                     int b_id=obj.getInt("b_id");
                                     int d_id=obj.getInt("d_id");
+                                    String fee=obj.getString("price");
                                     Log.d("img",image);
-                                    booking=new bookingList(d_id,b_id,name,specialist,date,time,image,reason,status);
+                                    booking=new bookingList(d_id,b_id,name,specialist,date,time,image,reason,status,fee);
                                     bookingarraylist.add(booking);
                                 }
                                 adapter.notifyDataSetChanged();
@@ -186,9 +187,11 @@ public class ScheduleFragment extends Fragment {
                                     String status=obj.getString("status");
                                     int b_id=obj.getInt("b_id");
                                     int d_id=obj.getInt("d_id");
+                                    String fee=obj.getString("price");
 
-                                    booking=new bookingList(d_id,b_id,name,specialist,date,time,image,reason,status);
+                                    booking=new bookingList(d_id,b_id,name,specialist,date,time,image,reason,status,fee);
                                     bookingarraylist.add(booking);
+
                                 }
                                 adapter.notifyDataSetChanged();
                                 adapter.setShowButtons(false);

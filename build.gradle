@@ -1,5 +1,22 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    ext.kotlin_version = '1.9.10'
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.10"
+        classpath 'com.android.tools.build:gradle:7.4.1' // Updated to a newer version
+    }
+}
+
 plugins {
-    id 'com.android.application' version '7.4.1' apply false
-    id 'com.android.library' version '7.4.1' apply false
+    id 'com.android.application' version '7.4.1' apply false // Downgraded version
+    id 'com.android.library' version '7.4.1' apply false // Downgraded version
+}
+// Removed allprojects block as it is redundant with repositories defined in settings.gradle
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }

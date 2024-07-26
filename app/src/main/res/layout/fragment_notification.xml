@@ -1,17 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".NotificationFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- Title for the Notification Page -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
         android:textStyle="bold"
         android:textSize="22sp"
-        android:text="NOTIFICATION PAGE"/>
+        android:text="NOTIFICATION PAGE"
+        android:id="@+id/notification_title"/>
 
-</FrameLayout>
+    <!-- ListView for notifications -->
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/notification_title"
+        android:scrollbars="vertical"
+        android:id="@+id/notification"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="0dp"/>
+</RelativeLayout>
