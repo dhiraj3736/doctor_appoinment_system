@@ -25,7 +25,7 @@ import com.example.doctor_appointment.R;
 
 //import com.example.doctor_appointment.esewapayment;
 import com.example.doctor_appointment.model.bookingList;
-import com.example.doctor_appointment.payment;
+//import com.example.doctor_appointment.payment;
 
 
 
@@ -135,8 +135,7 @@ public class scheduleAdapter extends ArrayAdapter<bookingList> {
             @Override
             public void onClick(View view) {
                 // Log the value of 'b_id' before starting the activity
-                Log.d("ScheduleAdapter", "b_id value before starting KhaltiPayment: " + b_id);
-Log.d("fee",fee);
+//
                 // Intent for the first activity
                 Intent intent = new Intent(getContext(), EsewaPayment.class);
                 intent.putExtra("selectedDate", holder.date.getText().toString());

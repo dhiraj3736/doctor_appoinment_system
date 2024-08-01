@@ -77,6 +77,7 @@ public class NotificationFragment extends Fragment {
                                     String name = notification.optString("name");
 
                                     String doctor = notification.optString("doctor");
+                                    String b_id=notification.optString("b_id");
 
                                     String date = notification.getString("date");
                                     String notification_id = notification.getString("notification_id");
@@ -84,7 +85,7 @@ public class NotificationFragment extends Fragment {
                                     String read_at=notification.getString("read_at");
 
                                     // Add the new notification to the list
-                                    notification_list list = new notification_list(name,doctor, date, notification_id,read_at);
+                                    notification_list list = new notification_list(name,doctor, date, notification_id,read_at,b_id);
                                     notification_lists.add(list);
                                 }
 

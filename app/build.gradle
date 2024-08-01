@@ -52,5 +52,9 @@ android {
         implementation "org.jetbrains.kotlin:kotlin-stdlib:1.9.10"
         implementation "com.khalti:checkout-android:0.06.00"
         implementation 'androidx.databinding:viewbinding:7.0.0'
+        implementation("com.squareup.okhttp3:okhttp:4.12.0")
     }
 }
+
+
+

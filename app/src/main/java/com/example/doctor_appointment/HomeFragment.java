@@ -53,7 +53,7 @@ public class HomeFragment extends Fragment {
     TextView name,see_all_doctor;
     ImageView image;
     EditText searchInput;
-    ImageView searchButton;
+    ImageView searchButton,chatbot;
     LinearLayout servicesContainer;
     private RequestQueue requestQueue;
 
@@ -81,7 +81,7 @@ public class HomeFragment extends Fragment {
         image = view.findViewById(R.id.user_image);
         searchInput = view.findViewById(R.id.search_input);
         searchButton = view.findViewById(R.id.search_button);
-
+        chatbot=view.findViewById(R.id.chatbot);
 
         servicesContainer = view.findViewById(R.id.services_container);
 
@@ -94,6 +94,14 @@ public class HomeFragment extends Fragment {
         gridView=view.findViewById(R.id.gridView);
         adapter=new doctor_Adapter_for_userdashboard(getActivity(),arrayListdoctor);
         gridView.setAdapter(adapter);
+
+        chatbot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), chat_bot.class);
+                startActivity(intent);
+            }
+        });
 
         see_all_doctor.setOnClickListener(new View.OnClickListener() {
             @Override

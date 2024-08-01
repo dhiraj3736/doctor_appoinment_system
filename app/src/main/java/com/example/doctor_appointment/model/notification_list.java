@@ -2,13 +2,22 @@ package com.example.doctor_appointment.model;
 
 public class notification_list {
 
-    String name,doctor,date,notification_id,read_at;
-    public notification_list(String name,String doctor, String date,String notification_id,String read_at) {
+    String name,doctor,date,notification_id,read_at,b_id;
+    public notification_list(String name,String doctor, String date,String notification_id,String read_at,String b_id) {
         this.name=name;
     this.doctor=doctor;
         this.date=date;
         this.notification_id=notification_id;
         this.read_at=read_at;
+        this.b_id=b_id;
+    }
+
+    public String getB_id() {
+        return b_id;
+    }
+
+    public void setB_id(String b_id) {
+        this.b_id = b_id;
     }
 
     public String getRead_at() {

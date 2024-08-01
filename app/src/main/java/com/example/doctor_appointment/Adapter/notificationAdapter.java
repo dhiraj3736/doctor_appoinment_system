@@ -69,11 +69,13 @@ public class notificationAdapter extends ArrayAdapter<notification_list> {
         String doctor = currentNotification.getDoctor();
         String n_id = currentNotification.getNotification_id();
         String read_at = currentNotification.getRead_at();
+        String b_id= currentNotification.getB_id();
+
 
         // Format the date
         String dateOnly = date.split("T")[0];
         n_date.setText(dateOnly);
-        Log.d("read_at", read_at);
+
 
         // Update the message based on the conditions
         if ("1".equals(name)) {
@@ -100,9 +102,11 @@ public class notificationAdapter extends ArrayAdapter<notification_list> {
                 read_at(n_id, u_id);
                 if ("1".equals(name)) {
                     Intent intent = new Intent(getContext(), service.class);
+                    intent.putExtra("b_id",b_id);
                     getContext().startActivity(intent);
                 } else if ("1".equals(doctor)) {
                     Intent intent1 = new Intent(getContext(), EsewaPayment.class);
+                    intent1.putExtra("b_id",b_id);
                     getContext().startActivity(intent1);
                 }
             }

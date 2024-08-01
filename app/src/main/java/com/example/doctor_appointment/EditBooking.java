@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.GridLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,7 +46,10 @@ public class EditBooking extends AppCompatActivity {
     private EditText reason;
     private String Reasons;
     private String booking_time;
+    private ImageView back;
     String b_id;
+
+
     private List<String> bookedSlots = new ArrayList<>();
 
     @Override
@@ -57,6 +61,14 @@ public class EditBooking extends AppCompatActivity {
         timeGrid = findViewById(R.id.timeGrid);
         book = findViewById(R.id.book);
         reason = findViewById(R.id.reason);
+        back=findViewById(R.id.back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         requestQueue = Volley.newRequestQueue(this);
 
