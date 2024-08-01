@@ -95,7 +95,6 @@
 //        RequestBody body = RequestBody.create(jsonBody.toString(), JSON);
 //
 //        // Load API key from a secure location
-//        String apiKey = "sk-proj-tflpvMYfV8Ah69yke1BZT3BlbkFJ8fNtieOsF2bDZjAEQuXb"; // Replace with your method of securely retrieving the API key
 //
 //        Request request = new Request.Builder()
 //                .url("https://api.openai.com/v1/completions")
