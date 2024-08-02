@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="2dp"
+    android:background="@color/purple_20"
+    tools:context=".doctorlistview">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/purple_200"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp"
+        app:cardMaxElevation="1dp"
+        app:cardUseCompatPadding="true"
+        android:id="@+id/card">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/doctor_image"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/userdashboardimage"
+                    android:contentDescription="Doctor Image"
+                    android:scaleType="centerCrop"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clipToOutline="true"
+                    android:padding="4dp"/>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="8dp">
+
+                    <TextView
+                        android:id="@+id/doctor_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Dr. Dibas Khadka"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="4dp"/>
+
+                    <TextView
+                        android:id="@+id/doctor_specialty"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Internal Medicine, Gastroenterology"
+                        android:textAppearance="?attr/textAppearanceBody2"
+                        android:textColor="@color/light_black"
+                        android:layout_marginBottom="2dp"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/rating_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0.0"
+                            android:textSize="16sp"
+                            android:textColor="@color/light_black"
+                            android:layout_marginStart="2dp"/>
+
+                        <RatingBar
+                            android:id="@+id/doctor_rating"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:numStars="1"
+                            android:stepSize="1.3"
+                            android:rating="1"
+                            android:isIndicator="true"
+                            android:scaleX="0.3"
+                            android:scaleY="0.3"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

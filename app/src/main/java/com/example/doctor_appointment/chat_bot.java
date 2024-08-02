@@ -95,7 +95,7 @@ public class chat_bot extends AppCompatActivity {
         RequestBody body = RequestBody.create(jsonBody.toString(), JSON);
 
         // Load API key from a secure location
-        String apiKey = "sk-proj-tflpvMYfV8Ah69yke1BZT3BlbkFJ8fNtieOsF2bDZjAEQuXb"; // Replace with your method of securely retrieving the API key
+        String apiKey = "sk-BRbRTxApxHtPWt0z7nzwmG93Pp0Csc82LzMo99tFAYT3BlbkFJjvGJj7OEr_qMoUlVdZ_ykFdRsJQYoUPb55OjChIgQA"; // Replace with your method of securely retrieving the API key
 
         Request request = new Request.Builder()
                 .url("https://api.openai.com/v1/completions")

@@ -12,10 +12,12 @@ import android.widget.GridView;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -68,6 +70,7 @@ public class HomeFragment extends Fragment {
     topDoctorAdapter topDoctorAdapter;
     doctor_Adapter_for_userdashboard adapter;
 
+    LinearLayout top_doctor_container;
     public static ArrayList<doctorList> arrayListdoctor=new ArrayList<>();
     public static ArrayList<topRatedDoctor> toprateddoctor=new ArrayList<>();
 
@@ -98,11 +101,11 @@ public class HomeFragment extends Fragment {
 
         see_all_doctor=view.findViewById(R.id.see_all_doctor);
         gridView=view.findViewById(R.id.gridView);
-        top_doctor=view.findViewById(R.id.top_doctor_gridView);
+
         adapter=new doctor_Adapter_for_userdashboard(getActivity(),arrayListdoctor);
         gridView.setAdapter(adapter);
-        topDoctorAdapter=new topDoctorAdapter(getActivity(),toprateddoctor);
-        top_doctor.setAdapter(topDoctorAdapter);
+
+        top_doctor_container = view.findViewById(R.id.top_doctor_linear_layout);
 
         chatbot.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -240,7 +243,7 @@ public class HomeFragment extends Fragment {
 
                             View serviceView = LayoutInflater.from(getContext()).inflate(R.layout.service_text_view, servicesContainer, false);
 
-                           //for scrollview
+                            //for scrollview
                             TextView serviceNameTextView = serviceView.findViewById(R.id.service_name);
 
 
@@ -250,18 +253,18 @@ public class HomeFragment extends Fragment {
                             servicesContainer.addView(serviceView);
                             Log.d("services", "service: " + serviceName);
 
-                        serviceView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intent=new Intent(getActivity(),service.class);
-                                intent.putExtra("service_id", s_id);
-                                intent.putExtra("service_name", serviceName);
-                                startActivity(intent);
+                            serviceView.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent=new Intent(getActivity(),service.class);
+                                    intent.putExtra("service_id", s_id);
+                                    intent.putExtra("service_name", serviceName);
+                                    startActivity(intent);
 
 
 
-                            }
-                        });
+                                }
+                            });
 
                         }
                     }
@@ -358,7 +361,8 @@ public class HomeFragment extends Fragment {
                             topRatedDoctor topdoctor = new topRatedDoctor(d_id, name, specialist, qualification, experience, image, rating_value);
                             toprateddoctor.add(topdoctor);
                         }
-                        topDoctorAdapter.notifyDataSetChanged();
+                        // Dynamically add top-rated doctors to the horizontal scroll view
+                        addTopRatedDoctorsToScrollView(top_doctor_container, toprateddoctor);
                     } else {
                         Toast.makeText(getContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                     }
@@ -382,8 +386,42 @@ public class HomeFragment extends Fragment {
         requestQueue.add(request1);
     }
 
+    private void addTopRatedDoctorsToScrollView(LinearLayout container, List<topRatedDoctor> doctors) {
+        container.removeAllViews();
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+
+        for (topRatedDoctor doctor : doctors) {
+            View view = inflater.inflate(R.layout.top_docto_list, container, false);
+
+            ImageView doctorImage = view.findViewById(R.id.doctor_image);
+            TextView doctorName = view.findViewById(R.id.doctor_name);
+            TextView doctorSpecialty = view.findViewById(R.id.doctor_specialty);
+            TextView ratingValue = view.findViewById(R.id.rating_value);
+            RatingBar doctorRating = view.findViewById(R.id.doctor_rating);
+            CardView cardView=view.findViewById(R.id.card);
+
+            String d_id=doctor.getD_id();
+            doctorName.setText(doctor.getName());
+            doctorSpecialty.setText(doctor.getSpecialist());
+            ratingValue.setText(doctor.getRating_value());
+            doctorRating.setRating(Float.parseFloat(doctor.getRating_value()));
+
+            Glide.with(getContext()).load(doctor.getImage()).circleCrop().into(doctorImage);
+
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent=new Intent(getContext(), doctor_profile.class);
+                    intent.putExtra("doctor_id",d_id);
+                    getContext().startActivity(intent);
 
 
+                }
+            });
 
+
+            container.addView(view);
+        }
+    }
 
 }

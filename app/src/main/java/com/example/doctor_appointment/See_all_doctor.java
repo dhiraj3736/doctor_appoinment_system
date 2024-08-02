@@ -66,7 +66,7 @@ public class See_all_doctor extends AppCompatActivity {
     }
 
     public void retrive_doctor_info(){
-        String url = Endpoints.get_doctor_info_for_userdashboard;
+        String url = Endpoints.doctor_info_for_doctor_list;
         arrayListdoctor.clear();
         StringRequest request=new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override

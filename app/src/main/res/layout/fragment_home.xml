@@ -189,8 +189,8 @@
                         android:layout_height="wrap_content"
                         android:numColumns="2"
                         android:columnWidth="150dp"
-                        android:verticalSpacing="10dp"
-                        android:horizontalSpacing="10dp"
+                        android:verticalSpacing="5dp"
+                        android:horizontalSpacing="5dp"
                         android:stretchMode="columnWidth"
 
                         android:gravity="center"/>
@@ -212,6 +212,7 @@
                             android:layout_height="wrap_content"
                             android:text="Top rating Doctors"
                             android:textStyle="bold"
+                            android:gravity="center"
                             android:textColor="@color/black"
                             android:textSize="24dp"
                             android:layout_weight="1"/>
@@ -219,17 +220,28 @@
 
                     </LinearLayout>
 
-                    <com.example.doctor_appointment.CustomGridView
-                        android:id="@+id/top_doctor_gridView"
+                    <HorizontalScrollView
+                        android:id="@+id/horizontal_scroll_view1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:numColumns="2"
-                        android:columnWidth="150dp"
-                        android:verticalSpacing="10dp"
-                        android:horizontalSpacing="10dp"
-                        android:stretchMode="columnWidth"
+                        android:fillViewport="true"
+                        android:scrollbars="none">
 
-                        android:gravity="center"/>
+                        <LinearLayout
+                            android:id="@+id/top_doctor_linear_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+
+                            android:padding="10dp">
+
+                            <!-- Example grid item -->
+                            <!-- Add your grid items dynamically from the fragment -->
+                            <!-- Initially, you can leave this empty -->
+
+                        </LinearLayout>
+                    </HorizontalScrollView>
                 </LinearLayout>
             </LinearLayout>
 
