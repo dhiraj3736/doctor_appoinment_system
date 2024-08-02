@@ -31,7 +31,9 @@ import com.bumptech.glide.Glide;
 import com.example.doctor_appointment.Adapter.DaysAdapter;
 import com.example.doctor_appointment.Adapter.doctorAdaptor;
 import com.example.doctor_appointment.Adapter.doctor_Adapter_for_userdashboard;
+import com.example.doctor_appointment.Adapter.topDoctorAdapter;
 import com.example.doctor_appointment.model.doctorList;
+import com.example.doctor_appointment.model.topRatedDoctor;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -61,12 +63,16 @@ public class HomeFragment extends Fragment {
     private TextView tvMonthYear;
 
     CustomGridView gridView;
+    CustomGridView top_doctor;
 
+    topDoctorAdapter topDoctorAdapter;
     doctor_Adapter_for_userdashboard adapter;
 
     public static ArrayList<doctorList> arrayListdoctor=new ArrayList<>();
+    public static ArrayList<topRatedDoctor> toprateddoctor=new ArrayList<>();
 
     doctorList doctor;
+    topRatedDoctor topdoctor;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -92,8 +98,11 @@ public class HomeFragment extends Fragment {
 
         see_all_doctor=view.findViewById(R.id.see_all_doctor);
         gridView=view.findViewById(R.id.gridView);
+        top_doctor=view.findViewById(R.id.top_doctor_gridView);
         adapter=new doctor_Adapter_for_userdashboard(getActivity(),arrayListdoctor);
         gridView.setAdapter(adapter);
+        topDoctorAdapter=new topDoctorAdapter(getActivity(),toprateddoctor);
+        top_doctor.setAdapter(topDoctorAdapter);
 
         chatbot.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,6 +140,7 @@ public class HomeFragment extends Fragment {
         retrivedata();
         retriveservice();
         retrive_doctor_info();
+        top_rated_doctor_info();
 
 
 
@@ -318,6 +328,62 @@ public class HomeFragment extends Fragment {
         });
         requestQueue.add(request);
     }
+
+    public void top_rated_doctor_info() {
+        String url = Endpoints.topRatingDoctor;
+
+        StringRequest request1 = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("Response1", response); // Log the raw response
+
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    String result = jsonObject.getString("result");
+
+                    if (result.equals("success")) {
+                        JSONArray jsonArray1 = jsonObject.getJSONArray("data1");
+                        toprateddoctor.clear(); // Clear the list before adding new data
+
+                        for (int i = 0; i < jsonArray1.length(); i++) {
+                            JSONObject object = jsonArray1.getJSONObject(i);
+                            String d_id = object.getString("d_id");
+                            String name = object.getString("name");
+                            String specialist = object.getString("specialist");
+                            String qualification = object.getString("qualification");
+                            String experience = object.getString("experiance");
+                            String image = object.getString("image");
+                            String rating_value = object.getString("rating_value");
+
+                            topRatedDoctor topdoctor = new topRatedDoctor(d_id, name, specialist, qualification, experience, image, rating_value);
+                            toprateddoctor.add(topdoctor);
+                        }
+                        topDoctorAdapter.notifyDataSetChanged();
+                    } else {
+                        Toast.makeText(getContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Log.e("Error", "JSON parsing error: " + e.getMessage());
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if (error.networkResponse != null && error.networkResponse.statusCode == 404) {
+                    Toast.makeText(getContext(), "No top-rated doctors found", Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.e("Error", "Network error: " + error.toString());
+                    Toast.makeText(getContext(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        requestQueue.add(request1);
+    }
+
+
+
 
 
 }

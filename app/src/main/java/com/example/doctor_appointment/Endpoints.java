@@ -34,6 +34,8 @@ public class Endpoints {
 
     public  static final String saveAverageRating=BASE_URL + "saveAverageRating";
 
+    public  static final String topRatingDoctor=BASE_URL + "topRated";
+
     public  static final String getAvailableTimeSlots=BASE_URL + "getAvailableTimeSlots";
 
     public  static final String saveAppoinment=BASE_URL + "saveAppoinment";

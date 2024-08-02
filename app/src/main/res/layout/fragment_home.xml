@@ -195,7 +195,44 @@
 
                         android:gravity="center"/>
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="Top rating Doctors"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:textSize="24dp"
+                            android:layout_weight="1"/>
+
+
+                    </LinearLayout>
+
+                    <com.example.doctor_appointment.CustomGridView
+                        android:id="@+id/top_doctor_gridView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:numColumns="2"
+                        android:columnWidth="150dp"
+                        android:verticalSpacing="10dp"
+                        android:horizontalSpacing="10dp"
+                        android:stretchMode="columnWidth"
+
+                        android:gravity="center"/>
+                </LinearLayout>
             </LinearLayout>
+
         </LinearLayout>
     </FrameLayout>
 </ScrollView>

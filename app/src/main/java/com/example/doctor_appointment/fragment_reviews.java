@@ -301,6 +301,7 @@ Log.d("cmt",cmt);
 
 
 
+
                 ratingBar.setClickable(false);
             }else if (response.equals("failure")) {
                 Toast.makeText(getContext(), "Something went wrong!", Toast.LENGTH_SHORT).show();
