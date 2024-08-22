@@ -208,8 +208,37 @@ android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
 
         android:textSize="20sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:text="Doctor Charge:"
+        android:textColor="@color/black"
+
+        android:textStyle="bold"
+        android:layout_marginStart="16dp"
+
+        android:textSize="15sp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:text=""
+            android:id="@+id/doctorCharge"
+            android:textColor="@color/red"
 
 
+            android:layout_marginStart="16dp"
+
+            android:textSize="15sp" />
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

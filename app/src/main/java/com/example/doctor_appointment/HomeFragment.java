@@ -124,6 +124,17 @@ public class HomeFragment extends Fragment {
 
             }
         });
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String query = searchInput.getText().toString().trim();
+                if (!query.isEmpty()) {
+                    search(query); // Call the search function
+                } else {
+                    Toast.makeText(getContext(), "Please enter a search term", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         // Setup days RecyclerView
         rvDays.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
@@ -157,6 +168,53 @@ public class HomeFragment extends Fragment {
     }
 
 
+    private void search(String query) {
+        String url = Endpoints.select_doctor_info_for_search;
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    String result = jsonObject.getString("result");
+
+                    if (result.equals("success")) {
+                        // Handle doctor search result
+                        JSONArray doctorArray = jsonObject.optJSONArray("data");
+
+                        if (doctorArray != null) {
+                            // Pass the search results to the new activity
+                            Intent intent = new Intent(getContext(),searchActivity.class);
+                            intent.putExtra("doctors_data", doctorArray.toString());
+                            startActivity(intent);
+                        } else {
+                            // Handle the case when doctorArray is null
+                            Log.e("SearchError", "Doctor array is null");
+                            // Optionally show a message to the user or handle it gracefully
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("SearchError", "Error: " + error.getMessage());
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> data = new HashMap<>();
+                data.put("query", query);
+                return data;
+            }
+        };
+
+        requestQueue.add(stringRequest);
+    }
 
 
     private List<String> getDaysOfMonth() {

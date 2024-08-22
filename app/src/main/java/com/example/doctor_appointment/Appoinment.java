@@ -96,7 +96,7 @@ public class Appoinment extends AppCompatActivity {
         });
 
     }
-
+// Slot Booking
     public void saveAppoinment(String doctorId, String selectedDate, String selectedTimeSlot,String Reasons) {
         String url = Endpoints.saveAppoinment;
 
@@ -147,6 +147,9 @@ public class Appoinment extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
+
+
+    // Slot Initialization
     public void getTimeSlot(String doctorId, String date) {
         String url = Endpoints.getAvailableTimeSlots;
 
@@ -203,7 +206,7 @@ public class Appoinment extends AppCompatActivity {
     }
 
 
-
+    // Slot Selection and Management
     private void displayTimeSlots(List<String> timeSlots) {
         timeGrid.removeAllViews(); // Clear any previous time slots
 

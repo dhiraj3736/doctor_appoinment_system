@@ -49,6 +49,7 @@ class EsewaPayment : AppCompatActivity() {
     private lateinit var nmcNo: TextView
     private lateinit var stat: TextView
     private lateinit var paymentDetail: TextView
+    private  lateinit var doctorCharge:TextView
     private lateinit var esewa: Button
     private  lateinit var back:ImageView
 
@@ -80,6 +81,7 @@ class EsewaPayment : AppCompatActivity() {
         reasons = findViewById(R.id.appointment_reason)
         stat = findViewById(R.id.status)
         paymentDetail = findViewById(R.id.paymentdetail)
+        doctorCharge=findViewById(R.id.doctorCharge);
         esewa = findViewById(R.id.esewabtn)
         back=findViewById(R.id.back);
         back.setOnClickListener { finish() }
@@ -175,12 +177,14 @@ class EsewaPayment : AppCompatActivity() {
                             val name = jsonObject.getString("name")
                             val specialist = jsonObject.getString("specialist")
                             val nmc = jsonObject.getString("nmc_no")
+                            val price=jsonObject.getString("price")
                             val imageUrl = jsonObject.getString("image")
 
                             Glide.with(this).load(imageUrl).circleCrop().into(doctorImage)
                             doctorName.text = name
                             doctorSpecialty.text = specialist
                             nmcNo.text = nmc
+
                         } else {
                             Log.e("Error", "Doctor ID is null or empty")
                         }
@@ -290,6 +294,8 @@ class EsewaPayment : AppCompatActivity() {
                             date.text = selectedDate
                             time.text = selectedTimeSlot
                             reasons.text = reason
+                            doctorCharge.text=fee
+
 //                            paymentDetail.text = fee
 
                             // Call updateUIBasedOnStatus after the data is set

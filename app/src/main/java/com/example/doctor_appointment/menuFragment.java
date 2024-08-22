@@ -9,24 +9,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
-public class ProfileFragment extends Fragment {
+public class menuFragment extends Fragment {
 
-Button logout;
+    TextView logout;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_profile, container, false);
+        View view=inflater.inflate(R.layout.fragment_menu_, container, false);
 
         logout=view.findViewById(R.id.logout);
 
-        SessionManagement sessionManagement=new SessionManagement(getContext());
-        sessionManagement.removeSession();
+
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                SessionManagement sessionManagement=new SessionManagement(getContext());
+                sessionManagement.removeSession();
                 Intent intent = new Intent(getContext(), login.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
 

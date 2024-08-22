@@ -24,11 +24,11 @@
         android:icon="@drawable/book"/>
 
     <item
-        android:id="@+id/navProfile"
+        android:id="@+id/navMenu"
         android:title="Profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:icon="@drawable/profile"
+        android:icon="@drawable/menu_24"
         />
 
 </menu>

@@ -59,8 +59,8 @@ String user_info,user_id;
                     case R.id.navBook:
                         selectedFragment = new ScheduleFragment();
                         break;
-                    case R.id.navProfile:
-                        selectedFragment = new ProfileFragment();
+                    case R.id.navMenu:
+                        selectedFragment = new menuFragment();
                         break;
                 }
 
