@@ -1,0 +1,185 @@
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@color/purple_200">
+
+        <!-- Header Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginBottom="16dp"
+
+            android:backgroundTint="#000000">
+
+            <TextView
+                android:id="@+id/header_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="User Profile"
+                android:textSize="24sp"
+
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+            android:padding="16dp"
+            android:gravity="center"
+            android:layout_gravity="center"/>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Profile Picture Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+
+            android:layout_marginBottom="16dp">
+
+            <ImageView
+                android:id="@+id/profile_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/userdashboardimage"
+                android:scaleType="centerCrop"/>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Full Name -->
+        <TextView
+            android:id="@+id/full_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dhiraj Bikram Shah"
+            android:textColor="#000000"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginBottom="4dp"/>
+
+        <!-- Username -->
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="dhiraj"
+            android:textColor="#808080"
+        android:textSize="18sp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="4dp"/>
+
+        <!-- Location -->
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bhaisepati, Lalitpur"
+            android:textColor="#000000"
+        android:textSize="16sp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="4dp"/>
+
+        <!-- Phone Number and Email -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+
+            android:layout_gravity="bottom">
+        <TextView
+            android:id="@+id/phoneno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="98968843738"
+            android:textColor="#1E88E5"
+        android:textSize="16sp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="4dp"/>
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="|"
+                android:textColor="#1E88E5"
+                android:textSize="16sp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="4dp"/>
+            <TextView
+                android:id="@+id/phone_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="dhiraj@gmail.com"
+                android:textColor="#1E88E5"
+                android:textSize="16sp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="4dp"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+
+            android:layout_gravity="bottom">
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Member Since:"
+            android:textColor="#808080"
+        android:textSize="14sp"
+        android:layout_gravity="center"
+      />
+            <TextView
+                android:id="@+id/join"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2024-03-25 "
+                android:textColor="#808080"
+                android:textSize="14sp"
+                android:layout_gravity="center"
+                />
+
+        </LinearLayout>
+
+        <!-- Buttons Container -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="bottom"
+            android:layout_gravity="bottom">
+
+            <!-- Edit Information Button -->
+            <Button
+                android:id="@+id/btn_edit_info"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                android:layout_weight="1"
+                android:text="Edit  Information"
+                android:backgroundTint="#333333"
+                android:textColor="#FFFFFF"
+            android:layout_margin="4dp"
+           />
+
+            <!-- Change Password Button -->
+            <Button
+                android:id="@+id/btn_change_password"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Change Password"
+
+            android:textColor="#FFFFFF"
+            android:layout_margin="4dp"
+           />
+
+            <!-- Delete Account Button -->
+
+        </LinearLayout>
+    </LinearLayout>

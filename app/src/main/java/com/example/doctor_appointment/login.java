@@ -34,6 +34,7 @@ public class login extends Activity {
     String email,password;
     int session_Id;
 
+    TextView forgetpassword;
     String user_info;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,16 @@ public class login extends Activity {
         lpassword=findViewById(R.id.etPassword);
         login_button=findViewById(R.id.btnLogin);
         register=findViewById(R.id.tvCreateAccount);
+        forgetpassword=findViewById(R.id.tvForgotPassword);
+
+        forgetpassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(login.this,forgetPassword.class);
+
+                startActivity(intent1);
+            }
+        });
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override

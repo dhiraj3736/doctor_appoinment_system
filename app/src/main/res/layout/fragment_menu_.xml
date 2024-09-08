@@ -24,6 +24,7 @@
         android:gravity="center">
 
             <ImageView
+                android:id="@+id/photo"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:background="@drawable/profile_circle_bg"
@@ -31,6 +32,7 @@
                 android:scaleType="centerCrop"/>
 
             <TextView
+                android:id="@+id/fullname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Dhiraj Bikram Shah"
@@ -41,6 +43,7 @@
             android:layout_marginBottom="4dp"/>
 
         <TextView
+            android:id="@+id/email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="dhiraj@gmail.com"
@@ -61,6 +64,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:id="@+id/profile"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="12dp"
@@ -83,10 +87,11 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="3dp"
         android:background="#FFFFFF"/>
 
     <LinearLayout
+        android:id="@+id/report"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -110,10 +115,11 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="3dp"
         android:background="#FFFFFF"/>
 
     <LinearLayout
+        android:id="@+id/editProfile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -137,7 +143,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="3dp"
         android:background="#FFFFFF"/>
 
     <LinearLayout
@@ -164,7 +170,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="3dp"
         android:background="#FFFFFF"/>
 
     <LinearLayout

@@ -28,7 +28,7 @@ android:layout_weight="1"
         android:drawableStart="@drawable/ic_user"
         android:drawablePadding="15dp"/>
 
-    <!-- Email Address Input -->
+
     <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"
