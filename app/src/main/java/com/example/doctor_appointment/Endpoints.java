@@ -1,7 +1,7 @@
 package com.example.doctor_appointment;
 
 public class Endpoints {
-    private static final String BASE_URL = "http://192.168.1.9:8080/api/";
+    private static final String BASE_URL = "http://192.168.1.5:8080/api/";
 
 
     public static final String login = BASE_URL + "auth";

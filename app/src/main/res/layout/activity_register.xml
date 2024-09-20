@@ -16,6 +16,17 @@
 android:layout_weight="1"
         android:src="@drawable/userdashboardimage" />
 
+
+    <TextView
+        android:id="@+id/success_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="hah "
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        />
     <!-- Full Name Input -->
     <EditText
         android:id="@+id/full_name"
@@ -30,15 +41,17 @@ android:layout_weight="1"
 
 
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:hint="Email Address"
-        android:inputType="textEmailAddress"
+        android:hint="Address"
+
         android:background="@drawable/edittext_background"
-        android:drawableStart="@drawable/ic_email"
+        android:drawableStart="@drawable/ic_home"
         android:drawablePadding="15dp"/>
+
+
 
     <!-- Phone Number Input -->
     <EditText
@@ -50,6 +63,17 @@ android:layout_weight="1"
         android:inputType="phone"
         android:background="@drawable/edittext_background"
         android:drawableStart="@drawable/ic_phone"
+        android:drawablePadding="15dp"/>
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/edittext_background"
+        android:drawableStart="@drawable/ic_email"
         android:drawablePadding="15dp"/>
 
     <!-- Email Password Input -->
