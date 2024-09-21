@@ -53,6 +53,14 @@ public class menuFragment extends Fragment {
 
         retrieveUserInfo();
 
+
+        editprofile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getContext(),edituserinfo.class);
+                startActivity(intent);
+            }
+        });
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

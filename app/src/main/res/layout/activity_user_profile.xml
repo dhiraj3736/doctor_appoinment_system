@@ -3,7 +3,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp"
+
         android:background="@color/purple_200">
 
         <!-- Header Card -->
@@ -13,7 +13,18 @@
 
             android:layout_marginBottom="16dp"
 
-            android:backgroundTint="#000000">
+            android:backgroundTint="@color/purple_201">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/back_arrow"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="0dp"
+                android:layout_gravity="center_vertical"
+                />
 
             <TextView
                 android:id="@+id/header_title"
@@ -26,24 +37,43 @@
                 android:textColor="#FFFFFF"
             android:padding="16dp"
             android:gravity="center"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+
+                />
         </androidx.cardview.widget.CardView>
 
         <!-- Profile Picture Card -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center"
 
-            android:layout_marginBottom="16dp">
 
-            <ImageView
-                android:id="@+id/profile_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/userdashboardimage"
-                android:scaleType="centerCrop"/>
-        </androidx.cardview.widget.CardView>
+            <LinearLayout
+                android:layout_width="210dp"
+                android:layout_height="150dp"
+                android:orientation="horizontal"
+              android:layout_gravity="center"
+                android:layout_marginLeft="16dp"
+               android:gravity="center"
+                android:layout_marginTop="85dp"
+                android:layout_marginBottom="16dp">
+
+                <!-- Profile image -->
+                <ImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/userdashboardimage"
+                    android:scaleType="centerCrop" />
+
+                <!-- Camera icon on the right -->
+                <ImageView
+                    android:id="@+id/addphoto"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="bottom"
+
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/camera" />
+            </LinearLayout>
+
 
         <!-- Full Name -->
         <TextView
@@ -58,15 +88,7 @@
         android:layout_marginBottom="4dp"/>
 
         <!-- Username -->
-        <TextView
-            android:id="@+id/username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="dhiraj"
-            android:textColor="#808080"
-        android:textSize="18sp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="4dp"/>
+
 
         <!-- Location -->
         <TextView

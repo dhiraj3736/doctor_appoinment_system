@@ -91,6 +91,11 @@ public class EditBooking extends AppCompatActivity {
 
         getTimeSlot(doctorID, selectedDate);
 
+        CalendarView calendarView = findViewById(R.id.calendarView);
+
+// Set the minimum date to today's date to prevent past dates from being selected
+        calendarView.setMinDate(System.currentTimeMillis() - 1000); // Subtract 1000ms to ensure past dates are not clickable
+
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
@@ -101,6 +106,7 @@ public class EditBooking extends AppCompatActivity {
                 getTimeSlot(doctorID, selectedDate);
             }
         });
+
 
         book.setOnClickListener(new View.OnClickListener() {
             @Override
