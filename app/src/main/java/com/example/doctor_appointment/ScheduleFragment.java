@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -42,6 +43,7 @@ public class ScheduleFragment extends Fragment {
     private ListView listView;
     private scheduleAdapter adapter;
 
+    TextView empty;
     bookingList booking;
     public static ArrayList<bookingList> bookingarraylist = new ArrayList<>();
 
@@ -52,6 +54,7 @@ public class ScheduleFragment extends Fragment {
 
         // Initialize RecyclerView
         listView = view.findViewById(R.id.listview);
+        empty=view.findViewById(R.id.empty);
 
         adapter = new scheduleAdapter(getContext(), bookingarraylist,true);
         listView.setAdapter(adapter);
@@ -92,42 +95,55 @@ public class ScheduleFragment extends Fragment {
     }
 
     private void loadUpcomingAppointments() {
-
-
-
         String url = Endpoints.get_upcoming_schedule;
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        bookingarraylist.clear();
+        bookingarraylist.clear();  // Clear the list before loading new data
 
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        bookingarraylist.clear();
+                        bookingarraylist.clear();  // Clear the list in case new data arrives
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             String result = jsonObject.getString("result");
 
                             if (result.equals("success")) {
                                 JSONArray jsonArray = jsonObject.getJSONArray("data");
-                                for (int i = 0; i < jsonArray.length(); i++) {
-                                    JSONObject obj = jsonArray.getJSONObject(i);
-                                    String name = obj.getString("doctor_name");
-                                    String specialist = obj.getString("specialist");
-                                    String date= obj.getString("date");
-                                    String time= obj.getString("time");
-                                    String image=obj.getString("image");
-                                    String reason= obj.getString("reason");
-                                    String status=obj.getString("status");
-                                    int b_id=obj.getInt("b_id");
-                                    int d_id=obj.getInt("d_id");
-                                    String fee=obj.getString("price");
-                                    Log.d("img",image);
-                                    booking=new bookingList(d_id,b_id,name,specialist,date,time,image,reason,status,fee);
-                                    bookingarraylist.add(booking);
+
+                                if (jsonArray.length() == 0) {
+                                    // No appointments found, show empty view
+                                    empty.setVisibility(View.VISIBLE);
+                                    Log.d("ScheduleFragment", "No upcoming appointments: empty.setVisibility(View.VISIBLE)");
+                                } else {
+                                    // Appointments found, iterate through and add them to the list
+                                    for (int i = 0; i < jsonArray.length(); i++) {
+                                        JSONObject obj = jsonArray.getJSONObject(i);
+                                        String name = obj.getString("doctor_name");
+                                        String specialist = obj.getString("specialist");
+                                        String date = obj.getString("date");
+                                        String time = obj.getString("time");
+                                        String image = obj.getString("image");
+                                        String reason = obj.getString("reason");
+                                        String status = obj.getString("status");
+                                        int b_id = obj.getInt("b_id");
+                                        int d_id = obj.getInt("d_id");
+                                        String fee = obj.getString("price");
+
+                                        // Create a new booking object and add it to the list
+                                        bookingList booking = new bookingList(d_id, b_id, name, specialist, date, time, image, reason, status, fee);
+                                        bookingarraylist.add(booking);
+                                    }
+                                    adapter.notifyDataSetChanged();
+                                    empty.setVisibility(View.GONE);  // Hide empty view when data is available
+                                    Log.d("ScheduleFragment", "Appointments found: empty.setVisibility(View.GONE)");
                                 }
-                                adapter.notifyDataSetChanged();
-                                adapter.setShowButtons(true);
+                            } else if (result.equals("error")) {
+                                // Show empty view when there's an error (e.g., no appointments)
+                                empty.setVisibility(View.VISIBLE);
+                                String errorMsg = jsonObject.getString("message");
+                                empty.setText(errorMsg);  // Optionally, set the error message in the empty view
+                                Log.d("ScheduleFragment", "Error: " + errorMsg);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -140,61 +156,82 @@ public class ScheduleFragment extends Fragment {
                     public void onErrorResponse(VolleyError error) {
                         if (error instanceof NetworkError) {
                             Toast.makeText(getContext(), "Network error. Check your internet connection.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Log.e("Volley Error", "Error: " + error.getMessage());
                         }
-                        Log.e("Volley Error", "Error: " + error.getMessage());
+                        empty.setVisibility(View.VISIBLE);  // Show empty view on network error
+                        Log.d("ScheduleFragment", "Network error: empty.setVisibility(View.VISIBLE)");
                     }
                 }) {
 
-            SessionManagement sessionManagement=new SessionManagement(getContext());
-            int user_id= sessionManagement.getSession();
+            SessionManagement sessionManagement = new SessionManagement(getContext());
+            int user_id = sessionManagement.getSession();
+
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> data = new HashMap<>();
-                data.put("u_id", String.valueOf(user_id));
+                data.put("u_id", String.valueOf(user_id));  // Pass user ID
                 return data;
             }
         };
 
         requestQueue.add(request);
     }
+
+
+
 
     private void loadCompletedAppointments() {
-
-
         String url = Endpoints.get_completed_schedule;
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        bookingarraylist.clear();
+        bookingarraylist.clear();  // Clear the list before loading new data
 
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        bookingarraylist.clear();
+                        bookingarraylist.clear();  // Clear the list in case new data arrives
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             String result = jsonObject.getString("result");
 
                             if (result.equals("success")) {
                                 JSONArray jsonArray = jsonObject.getJSONArray("data");
-                                for (int i = 0; i < jsonArray.length(); i++) {
-                                    JSONObject obj = jsonArray.getJSONObject(i);
-                                    String name = obj.getString("doctor_name");
-                                    String specialist = obj.getString("specialist");
-                                    String date= obj.getString("date");
-                                    String time= obj.getString("time");
-                                    String image=obj.getString("image");
-                                    String reason=obj.getString("reason");
-                                    String status=obj.getString("status");
-                                    int b_id=obj.getInt("b_id");
-                                    int d_id=obj.getInt("d_id");
-                                    String fee=obj.getString("price");
 
-                                    booking=new bookingList(d_id,b_id,name,specialist,date,time,image,reason,status,fee);
-                                    bookingarraylist.add(booking);
+                                if (jsonArray.length() == 0) {
+                                    // No completed appointments found, show empty view
+                                    empty.setVisibility(View.VISIBLE);
+                                    Log.d("ScheduleFragment", "No completed appointments: empty.setVisibility(View.VISIBLE)");
+                                } else {
+                                    // Completed appointments found, iterate through and add them to the list
+                                    for (int i = 0; i < jsonArray.length(); i++) {
+                                        JSONObject obj = jsonArray.getJSONObject(i);
+                                        String name = obj.getString("doctor_name");
+                                        String specialist = obj.getString("specialist");
+                                        String date = obj.getString("date");
+                                        String time = obj.getString("time");
+                                        String image = obj.getString("image");
+                                        String reason = obj.getString("reason");
+                                        String status = obj.getString("status");
+                                        int b_id = obj.getInt("b_id");
+                                        int d_id = obj.getInt("d_id");
+                                        String fee = obj.getString("price");
 
+                                        // Create a new booking object and add it to the list
+                                        bookingList booking = new bookingList(d_id, b_id, name, specialist, date, time, image, reason, status, fee);
+                                        bookingarraylist.add(booking);
+                                    }
+                                    adapter.notifyDataSetChanged();
+                                    adapter.setShowButtons(false);  // Hide buttons for completed appointments
+                                    empty.setVisibility(View.GONE);  // Hide empty view when data is available
+                                    Log.d("ScheduleFragment", "Completed appointments found: empty.setVisibility(View.GONE)");
                                 }
-                                adapter.notifyDataSetChanged();
-                                adapter.setShowButtons(false);
+                            } else if (result.equals("error")) {
+                                // Show empty view when there's an error (e.g., no completed appointments)
+                                empty.setVisibility(View.VISIBLE);
+                                String errorMsg = jsonObject.getString("message");
+                                empty.setText(errorMsg);  // Optionally, set the error message in the empty view
+                                Log.d("ScheduleFragment", "Error: " + errorMsg);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -209,21 +246,25 @@ public class ScheduleFragment extends Fragment {
                             Toast.makeText(getContext(), "Network error. Check your internet connection.", Toast.LENGTH_SHORT).show();
                         }
                         Log.e("Volley Error", "Error: " + error.getMessage());
+                        empty.setVisibility(View.VISIBLE);  // Show empty view on network error
+                        Log.d("ScheduleFragment", "Network error: empty.setVisibility(View.VISIBLE)");
                     }
                 }) {
 
-            SessionManagement sessionManagement=new SessionManagement(getContext());
-            int user_id= sessionManagement.getSession();
+            SessionManagement sessionManagement = new SessionManagement(getContext());
+            int user_id = sessionManagement.getSession();
+
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> data = new HashMap<>();
-                data.put("u_id", String.valueOf(user_id));
+                data.put("u_id", String.valueOf(user_id));  // Pass user ID
                 return data;
             }
         };
 
         requestQueue.add(request);
     }
+
 
 
 }

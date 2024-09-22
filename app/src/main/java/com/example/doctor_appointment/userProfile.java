@@ -59,6 +59,17 @@ public class userProfile extends AppCompatActivity {
         joinDate = findViewById(R.id.join);
         addphoto=findViewById(R.id.addphoto);
         back=findViewById(R.id.back);
+        btnChangePassword=findViewById(R.id.btn_change_password);
+
+
+        btnChangePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(userProfile.this,changePassword.class);
+                startActivity(intent);
+
+            }
+        });
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,7 +116,7 @@ public class userProfile extends AppCompatActivity {
 
 
         btnEditInfo = findViewById(R.id.btn_edit_info);
-        btnChangePassword = findViewById(R.id.btn_change_password);
+
 
         requestQueue = Volley.newRequestQueue(this);
 
@@ -114,9 +125,7 @@ public class userProfile extends AppCompatActivity {
             // Handle edit information button click
         });
 
-        btnChangePassword.setOnClickListener(v -> {
-            // Handle change password button click
-        });
+
 
         retrieveUserInfo();
 
